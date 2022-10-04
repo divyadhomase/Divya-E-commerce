@@ -1,7 +1,6 @@
-.card-title {
-    color: white;
-} 
 
-.card-text{
-    color:white;
+#season, #checkout{
+color: white;
+float: left;
+
 }

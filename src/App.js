@@ -1,15 +1,18 @@
 import './App.css';
+import React from 'react';
 import Navbar from './Components/Navbar';
 // import image from './main_img.jpg';
 import Home from './Components/Home';
-import ProductList from './Components/ProductList';
+import Product from'./Components/Product';
+// import ProductList from './Components/ProductList';
 
 function App() {
   return (
     <div className="App" >
       <Navbar></Navbar>
       <Home></Home>
-      <ProductList></ProductList>
+      <Product></Product>
+      {/* <ProductList></ProductList> */}
 
       {/* <div style={{
       backgroundImage: `url(${process.env.PUBLIC_URL + "/bg image.jpg"})`,

@@ -15,7 +15,7 @@ export default function Navbar() {
             <ul className="navbar-nav mx-auto mb-2 mb-lg-0">
               <li className="nav-item">
                 <a className="nav-link active" aria-current="page" href="#">
-                  <span ><i class="fa-sharp fa-solid fa-house"></i></span>
+                  <span ><i className="fa-sharp fa-solid fa-house"></i></span>
                   Home</a>
               </li>
               <li className="nav-item">

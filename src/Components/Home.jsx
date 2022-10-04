@@ -1,15 +1,16 @@
 import React from 'react'
 import './Home.css';
+// import Product from './Product';
 // import image from './main_img.jpg';
 const Home = () => {
     return (
         <div className='hero'>
             <div className="card text-bg-white border-0">
-                <img src="/assets/main_img.jpg" class="card-img" alt="Background" height="550px" />
+                <img src="/assets/main_img.jpg" className="card-img" alt="Background" height="550px" />
                 <div className="card-img-overlay d-flex flex-column justify-content-center">
                     <div className='container'>
-                    <h5 className="card-title display-3 fw-bolder mb-0">NEW SEASON ARRIVALS</h5>
-                    <p className="card-text lead fs-2">
+                    <h6 id="season" className="card-title display-5 fw-bolder mb-0">NEW SEASON ARRIVALS</h6>
+                    <p id="checkout" className="card-text lead fs-2">
                         CHECK OUT ALL THE TRENDS
                     </p>
 
@@ -19,9 +20,10 @@ const Home = () => {
                 </div>
             </div>
 
-
+           {/* <Product/> */}
         </div>
+        
     )
 }
 
-export default Home
+export default Home;
