@@ -18,13 +18,13 @@
 
 }
 
-img{
+/* img{
 
     width: 25%;
 
     height: 20%;
 
-}
+} */
 .App {
     font-family: sans-serif;
     text-align: center;
@@ -57,12 +57,16 @@ img{
     font-size: 26px;
   }
   .avatar {
-    width: 150px;
-    margin: auto;
+    width: 250px;
+    /* margin: auto; */
+    height:300px;
+    padding-right:18px
   }
   .avatar img {
     border: solid 6px transparent;
     border-radius: 5%;
+    height:300px;
+    padding-right: 18px
   }
   /* .card:hover .avatar img {
     border-color: rgb(93, 96, 94);

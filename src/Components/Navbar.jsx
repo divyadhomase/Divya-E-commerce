@@ -1,42 +1,123 @@
-import './Navbar.css';
+import "./Navbar.css";
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 export default function Navbar() {
   return (
     <>
-      <script src="https://kit.fontawesome.com/6ec4c7a136.js" crossOrigin="anonymous"></script>
+      <script
+        src="https://kit.fontawesome.com/6ec4c7a136.js"
+        crossOrigin="anonymous"
+      ></script>
       <nav className="navbar navbar-expand-lg bg-light">
         <div className="container-fluid">
-          <a className="navbar-brand fw-bold fs-4" href="#"><b>D Store</b></a>
-          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <NavLink
+            className="navbar-brand fw-bold fs-4"
+            to="/"
+            style={({ isActive }) =>
+              isActive
+                ? {
+                    color: "#fff",
+                    background: "#040206",
+                  }
+                : { color: "#545e6f", background: "#f0f0f0" }
+            }
+          >
+            D Store
+          </NavLink>
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav mx-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="#">
-                  <span ><i className="fa-sharp fa-solid fa-house"></i></span>
-                  Home</a>
+                <NavLink
+                  className="nav-link "
+                  to="/" end
+                  style={({ isActive }) =>
+                    isActive
+                      ? {
+                          color: "#fff",
+                          background: "#7600dc",
+                        }
+                      : { color: "#545e6f", background: "#f0f0f0" }
+                  }
+                >
+                  <span>
+                    <i className="fa-sharp fa-solid fa-house"></i>
+                  </span>
+                  Home
+                </NavLink>
               </li>
               <li className="nav-item">
-                <a id="about" className="nav-link" href="#">About Us</a>
+                <NavLink
+                  
+                  className="nav-link"
+                  to="/about"
+                  style={({ isActive }) =>
+                    isActive
+                      ? {
+                          color: "#fff",
+                          background: "#7600dc",
+                        }
+                      : { color: "#545e6f", background: "#f0f0f0" }
+                  }
+                >
+                  About Us
+                </NavLink>
               </li>
               {/* <li className="nav-item dropdown">
-          <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a className="nav-link dropdown-toggle" to="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Products
           </a>
           </li> */}
               <li className="nav-item">
-                <a id="about" className="nav-link" href="#">Products</a>
+                <NavLink
+                  
+                  className="nav-link"
+                  to="/products"
+                  style={({ isActive }) =>
+                    isActive
+                      ? {
+                          color: "#fff",
+                          background: "#7600dc",
+                        }
+                      : { color: "#545e6f", background: "#f0f0f0" }
+                  }
+                >
+                  Products
+                </NavLink>
               </li>
               {/* <ul class="dropdown-menu">
-            <li><a className="dropdown-item" href="#">Clothes</a></li>
-            <li><a className="dropdown-item" href="#">Footwear</a></li>
-            <li><a className="dropdown-item" href="#">Electronic Devices</a></li>
+            <li><a className="dropdown-item" to="#">Clothes</a></li>
+            <li><a className="dropdown-item" to="#">Footwear</a></li>
+            <li><a className="dropdown-item" to="#">Electronic Devices</a></li>
           </ul>  */}
 
               <li className="nav-item">
-                <a id="about" className="nav-link" href="#">Contact</a>
+                <NavLink
+                  
+                  className="nav-link"
+                  to="/contact"
+                  style={({ isActive }) =>
+                    isActive
+                      ? {
+                          color: "#fff",
+                          background: "#7600dc",
+                        }
+                      : { color: "#545e6f", background: "#f0f0f0" }
+                  }
+                >
+                  Contact
+                </NavLink>
               </li>
             </ul>
             {/* <form className="d-flex" role="search">
@@ -44,19 +125,19 @@ export default function Navbar() {
               <button className="btn btn-outline-success" type="submit"><span><i class="fa-solid fa-magnifying-glass"></i></span></button>
             </form> */}
             <div className="buttons">
-              <a href='' className='btn btn-outline-dark'>
-                <i className='fa fa-sign-in me-1'></i> Login</a>
-                <a href='' className='btn btn-outline-dark ms-2'>
-                <i className='fa fa-user-plus me-1'></i> Register</a>
-                <a href='' className='btn btn-outline-dark ms-2'>
-                <i className='fa fa-shopping-cart me-1'></i> Cart (0)</a>
+              <NavLink to="/login" className="btn btn-outline-dark">
+                <i className="fa fa-sign-in me-1"></i> Login
+              </NavLink>
+              <NavLink to="/register" className="btn btn-outline-dark ms-2">
+                <i className="fa fa-user-plus me-1"></i> Register
+              </NavLink>
+              <NavLink to="/cart" className="btn btn-outline-dark ms-2">
+                <i className="fa fa-shopping-cart me-1"></i> Cart (0)
+              </NavLink>
             </div>
-
-
-      
           </div>
         </div>
       </nav>
     </>
-  )
+  );
 }

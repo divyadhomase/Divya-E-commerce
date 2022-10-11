@@ -1,17 +1,25 @@
 import './App.css';
 import React from 'react';
+import {Route,Routes,Link} from 'react-router-dom'
 import Navbar from './Components/Navbar';
 // import image from './main_img.jpg';
 import Home from './Components/Home';
-import Product from'./Components/Product';
-// import ProductList from './Components/ProductList';
+import Products from'./Components/Products';
+
+import Prod from './Components/Prod';
 
 function App() {
-  return (
-    <div className="App" >
+  return (<>
+    {/* <div className="App" > */}
       <Navbar></Navbar>
-      <Home></Home>
-      <Product></Product>
+      <Routes>
+        <Route path="/" element={<Home/>}/>
+        <Route path="/products" element={<Products/>}/>
+        <Route path="/products/:id" element={<Prod/>} />
+     
+        
+      
+     </Routes>
       {/* <ProductList></ProductList> */}
 
       {/* <div style={{
@@ -22,7 +30,8 @@ function App() {
 
    
       
-    </div>
+    {/* </div> */}
+    </>
   );
 }
 
