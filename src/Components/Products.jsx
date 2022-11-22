@@ -67,13 +67,19 @@ function Products() {
               <div className="card h-100 text-center">
                 <div className="card-body text-center">
                   <div className="avatar" height="250px">
-                    <img src={data.image} className="card-img-top" alt="" height="250px"/>
+                    <img
+                      src={data.image}
+                      className="card-img-top"
+                      alt=""
+                      height="250px"
+                    />
                   </div>
 
                   <div>
                     <h6 className="card-title text-center" href="/#">
                       {data.title.substring(0, 12)}
                     </h6>
+                    {/* <p>{data.rating.rate}</p> */}
                     {/*correctedError*/}
                   </div>
                   <NavLink
@@ -85,14 +91,12 @@ function Products() {
                 </div>
               </div>
             </div>
-            
           ))}
         </div>
       </div>
       {/* {console.log("CHECK")}
       {console.log(data)} */}
-
-      </div>
+    </div>
   );
 }
 
