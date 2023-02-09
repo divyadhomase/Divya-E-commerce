@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
-const Login = () => {
+const Login = ({show,setShow}) => {
     const [username, usernameupdate] = useState('');
     const [password, passwordupdate] = useState('');
 
@@ -25,6 +25,7 @@ const Login = () => {
                     if (resp.password === password) {
                          toast.success('Success');
                         sessionStorage.setItem('username',username);
+                        setShow(false);
                         usenavigate('/')
                     }else{
                          toast.error('Please Enter valid credentials');

@@ -1,9 +1,21 @@
 import "./Navbar.css";
-import React from "react";
+import React , {useEffect}from "react";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-export default function Navbar() {
+export default function Navbar({show,setShow}) {
+  //const [show, setShow] = useState(true);
+  let username=sessionStorage.getItem('username');
+   useEffect(()=>{
+    if (username === '' || username === null) {
+       setShow(true);
+       console.log(show);
+    }
+    else{
+      console.log(show);
+       setShow(false);
+    }
+},[username]);
   const stateInp = useSelector((state) => { return state.rootReducers.handleCart});
 
   const stateF = stateInp.map((x) => x.qty);
@@ -134,17 +146,17 @@ export default function Navbar() {
               <button className="btn btn-outline-success" type="submit"><span><i class="fa-solid fa-magnifying-glass"></i></span></button>
             </form> */}
             <div className="buttons">
-              <NavLink to="/login" className="btn btn-outline-dark">
+              {show && <NavLink to="/login" className="btn btn-outline-dark">
                 <i className="fa fa-sign-in me-1"></i> Login
-              </NavLink>
-              <NavLink to="/register" className="btn btn-outline-dark ms-2">
+              </NavLink>}
+              {show &&<NavLink to="/register" className="btn btn-outline-dark ms-2">
                 <i className="fa fa-user-plus me-1"></i> Register
-              </NavLink>
+              </NavLink>}
               <NavLink to="/cart" className="btn btn-outline-dark ms-2">
                 <i className="fa fa-shopping-cart me-1"></i> Cart ({stateF.length})
               </NavLink>
-              <NavLink to="/login" className="btn btn-outline-dark ms-2"> LogOut
-              </NavLink>
+              {!show &&<NavLink to="/login" className="btn btn-outline-dark ms-2" onClick={()=>{setShow(true)}}> LogOut
+              </NavLink>}
             </div>
           </div>
         </div>

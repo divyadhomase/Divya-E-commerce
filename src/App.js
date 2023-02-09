@@ -1,5 +1,5 @@
 import "./App.css";
-import React from "react";
+import React,{useState} from "react";
 import { Route, Routes } from "react-router-dom";
 import Navbar from "./Components/Navbar";
 // import image from './main_img.jpg';
@@ -12,16 +12,17 @@ import Login from './Login';
 import Register from './Register';
 // test
 function App() {
+  const [show, setShow] = useState(true);
   return (
     <>
       {/* <div className="App" > */}
-      <Navbar></Navbar>
+      <Navbar show={show} setShow={setShow}></Navbar>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/products" element={<Products />} />
         <Route path="/products/:id" element={<Prod />} />
         <Route path="/cart" element={<Cart />} />
-        <Route path='/login' element={<Login/>}></Route>
+        <Route path='/login' element={<Login show={show} setShow={setShow}/>}></Route>
         <Route path='/register' element={<Register/>}></Route>
         
       </Routes>

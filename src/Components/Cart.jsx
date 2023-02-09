@@ -36,8 +36,7 @@ const CartItems = (props) => {
     dispatch(addCart(props.item));
   };
 
-  const { title, image, price } = props.item;
-  //const cartQuantity=useSelector((state)=>state.rootReducers.);
+  const { title, image, price ,qty } = props.item;
 
   return (
     <>
@@ -86,7 +85,7 @@ const CartItems = (props) => {
              onClick={removeProduct}
              className="btn btn-outline-secondary">DECREMENT (-)</button>
 
-            <p>"Quantity :"{}</p>
+            <p>"Quantity :"{qty}</p>
           </div>
         </div>
       </div>

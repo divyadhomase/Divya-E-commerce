@@ -1,0 +1,44 @@
+{
+  "user": [
+    {
+      "id": "adminuser",
+      "name": "Nihira",
+      "password": "admin",
+      "email": "nihiratechiees@gmail.com",
+      "phone": "8989898989",
+      "country": "usa",
+      "address": "",
+      "gender": "female"
+    },
+    {
+      "id": "admin",
+      "name": "admin",
+      "password": "admin",
+      "email": "admin@gmail.com",
+      "phone": "",
+      "country": "india",
+      "address": "",
+      "gender": "male"
+    },
+    {
+      "id": "admin1",
+      "name": "admin1",
+      "password": "admin1",
+      "email": "admin1@gmail.com",
+      "phone": "",
+      "country": "india",
+      "address": "",
+      "gender": "male"
+    },
+    {
+      "id": "meet",
+      "name": "meet",
+      "password": "meet",
+      "email": "meet@gmail.com",
+      "phone": "meet",
+      "country": "india",
+      "address": "",
+      "gender": "female"
+    }
+  ]
+}
