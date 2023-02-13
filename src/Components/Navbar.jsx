@@ -62,7 +62,7 @@ export default function Navbar({show,setShow}) {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav mx-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <NavLink
+                {!show &&<NavLink
                   className="nav-link "
                   to="/"
                   end
@@ -79,10 +79,10 @@ export default function Navbar({show,setShow}) {
                     <i className="fa-sharp fa-solid fa-house"></i>
                   </span>
                   Home
-                </NavLink>
+                </NavLink>}
               </li>
               <li className="nav-item">
-                <NavLink
+                {!show &&<NavLink
                   className="nav-link"
                   to="/about"
                   style={({ isActive }) =>
@@ -95,7 +95,7 @@ export default function Navbar({show,setShow}) {
                   }
                 >
                   About Us
-                </NavLink>
+                </NavLink>}
               </li>
               {/* <li className="nav-item dropdown">
           <a className="nav-link dropdown-toggle" to="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -103,7 +103,7 @@ export default function Navbar({show,setShow}) {
           </a>
           </li> */}
               <li className="nav-item">
-                <NavLink
+                {!show && <NavLink
                   className="nav-link"
                   to="/products"
                   style={({ isActive }) =>
@@ -116,7 +116,7 @@ export default function Navbar({show,setShow}) {
                   }
                 >
                   Products
-                </NavLink>
+                </NavLink>}
               </li>
               {/* <ul class="dropdown-menu">
             <li><a className="dropdown-item" to="#">Clothes</a></li>
@@ -125,7 +125,7 @@ export default function Navbar({show,setShow}) {
           </ul>  */}
 
               <li className="nav-item">
-                <NavLink
+                {!show && <NavLink
                   className="nav-link"
                   to="/contact"
                   style={({ isActive }) =>
@@ -138,7 +138,7 @@ export default function Navbar({show,setShow}) {
                   }
                 >
                   Contact
-                </NavLink>
+                </NavLink>}
               </li>
             </ul>
             {/* <form className="d-flex" role="search">
@@ -152,9 +152,9 @@ export default function Navbar({show,setShow}) {
               {show &&<NavLink to="/register" className="btn btn-outline-dark ms-2">
                 <i className="fa fa-user-plus me-1"></i> Register
               </NavLink>}
-              <NavLink to="/cart" className="btn btn-outline-dark ms-2">
+              {!show && <NavLink to="/cart" className="btn btn-outline-dark ms-2">
                 <i className="fa fa-shopping-cart me-1"></i> Cart ({stateF.length})
-              </NavLink>
+              </NavLink>}
               {!show &&<NavLink to="/login" className="btn btn-outline-dark ms-2" onClick={()=>{setShow(true)}}> LogOut
               </NavLink>}
             </div>
