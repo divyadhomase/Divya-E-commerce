@@ -16,3 +16,10 @@ export const delCart = (product) => {
   };
 };
 
+export const deleteCart = (product) => {
+  return {
+    type: "DELPRODUCT",
+    payload: product,
+  };
+};
+

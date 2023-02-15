@@ -41,6 +41,12 @@ const handleCart = (state = cart, action) => {
       localStorage.setItem("cart", JSON.stringify(cartProducts));
       return cartProducts;
 
+    case "DELPRODUCT":
+      const exist2 = state.find((x) => x.id === product.id);
+      cartProducts = state.filter((x) => x.id !== exist2.id);
+      localStorage.setItem("cart", JSON.stringify(cartProducts));
+      return cartProducts;
+
     default:
       localStorage.setItem("cart", JSON.stringify(state));
       return state;

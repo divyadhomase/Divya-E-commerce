@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { delCart } from "../redux/action/index";
 import { addCart } from "../redux/action/index";
+import { deleteCart } from "../redux/action/index";
 
 import "./Cart.css";
 
@@ -52,6 +53,10 @@ function Cart() {
     dispatch(addCart(cartItem));
   };
 
+  const deleteProduct = (cartItem) => {
+    dispatch(deleteCart(cartItem));
+  };
+
   return (
     <>
       <section className="h-100 h-custom" style={{ backgroundColor: "#eee" }}>
@@ -74,7 +79,7 @@ function Cart() {
                             Shopping Cart
                           </MDBTypography>
                           <MDBTypography className="mb-0 text-muted">
-                            {cartProducts && cartProducts.length || 0}
+                            {(cartProducts && cartProducts.length) || 0}
                           </MDBTypography>
                         </div>
 
@@ -86,6 +91,7 @@ function Cart() {
                                 key={index}
                                 removeProduct={removeProduct}
                                 addProduct={addProduct}
+                                deleteProduct={deleteProduct}
                               />
                             );
                           })}
@@ -182,6 +188,10 @@ const CartItems = (props) => {
     props.addProduct(props.item);
   };
 
+  const deleteProduct = () => {
+    props.deleteProduct(props.item);
+  };
+
   const { title, image, price, qty } = props.item;
 
   return (
@@ -204,18 +214,14 @@ const CartItems = (props) => {
         </MDBCol>
         <MDBCol md="3" lg="3" xl="3" className="d-flex align-items-center">
           <MDBBtn color="link" className="px-2" rippleDuration={0}>
-            <MDBIcon fas icon="minus" onClick={removeProduct}/>
+            <MDBIcon fas icon="minus" onClick={removeProduct} />
           </MDBBtn>
 
-          <MDBTypography tag="h6" className="text-black mb-0">
+          <MDBTypography className="p-2 mb-2 bg-gradient-light text-dark border border-success">
             {qty}
           </MDBTypography>
 
-          <MDBBtn
-            color="link"
-            className="px-2"
-            rippleDuration={0}
-          >
+          <MDBBtn color="link" className="px-2" rippleDuration={0}>
             <MDBIcon fas icon="plus" onClick={addProduct} />
           </MDBBtn>
         </MDBCol>
@@ -226,7 +232,7 @@ const CartItems = (props) => {
         </MDBCol>
         <MDBCol md="1" lg="1" xl="1" className="text-end">
           <a href="#!" className="text-muted">
-            <MDBIcon fas icon="times" />
+            <MDBIcon fas icon="times" onClick={deleteProduct} />
           </a>
         </MDBCol>
       </MDBRow>
