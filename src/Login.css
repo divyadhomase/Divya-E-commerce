@@ -1,3 +1,4 @@
+
 .container1 {
   display: flex;
   height: 100vh;
@@ -19,8 +20,7 @@
   flex: 1;
   background-color: black;
   transition: 1s;
-  background-image:url(https://wallpapercave.com/wp/wp3537549.jpg);
-  height: auto;
+  background-image: url(https://wallpapercave.com/wp/wp3537549.jpg);
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -34,7 +34,7 @@
   margin-top: 10px;
   font-weight: normal;
   font-size: 15px;
-  color: rgba(0,0,0,.4);
+  color: rgba(0, 0, 0, 0.4);
 }
 
 .form {
@@ -57,9 +57,9 @@
   padding: 0 16px;
   border: 2px solid #ddd;
   border-radius: 4px;
-  font-family: 'Rubik', sans-serif;
+  font-family: "Rubik", sans-serif;
   outline: 0;
-  transition: .2s;
+  transition: 0.2s;
   margin-top: 20px;
 }
 
@@ -70,17 +70,17 @@
 .form > button {
   padding: 12px 10px;
   border: 0;
-  background: linear-gradient(to right, #de48b5 0%,#0097ff 100%); 
+  background: linear-gradient(to right, #de48b5 0%, #0097ff 100%);
   border-radius: 3px;
   margin-top: 10px;
   color: #fff;
   letter-spacing: 1px;
-  font-family: 'Rubik', sans-serif;
+  font-family: "Rubik", sans-serif;
 }
 
 .animation {
   animation-name: move;
-  animation-duration: .4s;
+  animation-duration: 0.4s;
   animation-fill-mode: both;
   animation-delay: 2s;
 }
@@ -128,6 +128,13 @@
     opacity: 0;
     width: 0;
   }
+
+  100% {
+    opacity: 1;
+    padding: 20px 40px;
+    width: 440px;
+  }
+}
 
   100% {
     opacity: 1;

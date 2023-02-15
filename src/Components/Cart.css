@@ -174,3 +174,16 @@ hr1{
 	font-weight: 600;
 	color: #202020;
 }
+.cartProduct div div div img {
+    height:100px;
+}
+
+.cartProduct {
+    padding:8px;
+    border: 1px solid rgba(228, 201, 201, 0.39);
+    background-color: rgba(223, 198, 198, 0.543);
+}
+.cart{
+   text-align: center; 
+   
+}
