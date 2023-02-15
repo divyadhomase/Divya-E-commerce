@@ -6,6 +6,20 @@ import { addCart } from "../redux/action/index";
 
 import "./Cart.css";
 
+import {
+  MDBBtn,
+  MDBCard,
+  MDBCardBody,
+  MDBCardImage,
+  MDBCardText,
+  MDBCol,
+  MDBContainer,
+  MDBIcon,
+  MDBInput,
+  MDBRow,
+  MDBTypography,
+} from "mdb-react-ui-kit";
+
 function Cart() {
   const cart = useSelector((state) => {
     return state.rootReducers.handleCart;
@@ -15,7 +29,7 @@ function Cart() {
 
   useEffect(() => {
     const cartElements = JSON.parse(localStorage.getItem("cart"));
-   
+
     cartElements &&
       cartElements.length &&
       setCart(() => {
@@ -29,17 +43,130 @@ function Cart() {
     });
   }, [cart]);
 
+  const dispatch = useDispatch();
+  const removeProduct = (cartItem) => {
+    dispatch(delCart(cartItem));
+  };
+
+  const addProduct = (cartItem) => {
+    dispatch(addCart(cartItem));
+  };
+
   return (
     <>
-      <div>Cart</div>
-      <div className="container">
-        <div className="row">
-          {cartProducts &&
-            cartProducts.map((item, index) => {
-              return <CartItems item={item} key={index} />;
-            })}
-        </div>
-      </div>
+      <section className="h-100 h-custom" style={{ backgroundColor: "#eee" }}>
+        <MDBContainer className="py-5 h-100">
+          <MDBRow className="justify-content-center align-items-center h-100">
+            <MDBCol size="12">
+              <MDBCard
+                className="card-registration card-registration-2"
+                style={{ borderRadius: "15px" }}
+              >
+                <MDBCardBody className="p-0">
+                  <MDBRow className="g-0">
+                    <MDBCol lg="8">
+                      <div className="p-5">
+                        <div className="d-flex justify-content-between align-items-center mb-5">
+                          <MDBTypography
+                            tag="h1"
+                            className="fw-bold mb-0 text-black"
+                          >
+                            Shopping Cart
+                          </MDBTypography>
+                          <MDBTypography className="mb-0 text-muted">
+                            {cartProducts && cartProducts.length || 0}
+                          </MDBTypography>
+                        </div>
+
+                        {cartProducts &&
+                          cartProducts.map((item, index) => {
+                            return (
+                              <CartItems
+                                item={item}
+                                key={index}
+                                removeProduct={removeProduct}
+                                addProduct={addProduct}
+                              />
+                            );
+                          })}
+
+                        <div className="pt-5">
+                          <MDBTypography tag="h6" className="mb-0">
+                            <MDBCardText
+                              tag="a"
+                              href="#!"
+                              className="text-body"
+                            >
+                              <MDBIcon fas icon="long-arrow-alt-left me-2" />{" "}
+                              Back to shop
+                            </MDBCardText>
+                          </MDBTypography>
+                        </div>
+                      </div>
+                    </MDBCol>
+                    <MDBCol lg="4" className="bg-grey">
+                      <div className="p-5">
+                        <MDBTypography
+                          tag="h3"
+                          className="fw-bold mb-5 mt-2 pt-1"
+                        >
+                          Summary
+                        </MDBTypography>
+
+                        <hr className="my-4" />
+
+                        <div className="d-flex justify-content-between mb-4">
+                          <MDBTypography tag="h5" className="text-uppercase">
+                            items 3
+                          </MDBTypography>
+                          <MDBTypography tag="h5">€ 132.00</MDBTypography>
+                        </div>
+
+                        <MDBTypography tag="h5" className="text-uppercase mb-3">
+                          Shipping
+                        </MDBTypography>
+
+                        <div className="mb-4 pb-2">
+                          <select
+                            className="select p-2 rounded bg-grey"
+                            style={{ width: "100%" }}
+                          >
+                            <option value="1">Standard-Delivery- €5.00</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                            <option value="4">Four</option>
+                          </select>
+                        </div>
+
+                        <MDBTypography tag="h5" className="text-uppercase mb-3">
+                          Give code
+                        </MDBTypography>
+
+                        <div className="mb-5">
+                          <MDBInput size="lg" label="Enter your code" />
+                        </div>
+
+                        <hr className="my-4" />
+
+                        <div className="d-flex justify-content-between mb-5">
+                          <MDBTypography tag="h5" className="text-uppercase">
+                            Total price
+                          </MDBTypography>
+                          <MDBTypography tag="h5">€ 137.00</MDBTypography>
+                        </div>
+
+                        <MDBBtn color="dark" block size="lg">
+                          Register
+                        </MDBBtn>
+                      </div>
+                    </MDBCol>
+                  </MDBRow>
+                </MDBCardBody>
+              </MDBCard>
+            </MDBCol>
+          </MDBRow>
+        </MDBContainer>
+      </section>
     </>
   );
 }
@@ -48,113 +175,63 @@ const CartItems = (props) => {
   // write function to remove item
   const dispatch = useDispatch();
   const removeProduct = () => {
-    dispatch(delCart(props.item));
+    props.removeProduct(props.item);
   };
 
   const addProduct = () => {
-    dispatch(addCart(props.item));
+    props.addProduct(props.item);
   };
 
-  const { title, image, price ,qty } = props.item;
+  const { title, image, price, qty } = props.item;
 
   return (
     <>
-   
-      <div className="col-12 p-2">
-        <div className="cartProduct container d-flex">
-          <div className="col-2 text-red bg-navyBlue">
-            
-              {/* <img src={image}/> */}
-              <div className="cartProduct1" height="250px">
-                <img
-                  src={image}
-                  className="card-img-top"
-                  alt=""
-                  height="250px"
-                />
-              </div>
-            </div>
-            
-          </div>
+      <hr className="my-4" />
 
-          <div className="col-9">
-            <div className="p-2 h5">
-              <p>{title}</p>
-            </div>
+      <MDBRow className="mb-4 d-flex justify-content-between align-items-center">
+        <MDBCol md="2" lg="2" xl="2">
+          <MDBCardImage
+            src={image}
+            fluid
+            className="rounded-3"
+            alt="Cotton T-shirt"
+          />
+        </MDBCol>
+        <MDBCol md="3" lg="3" xl="3">
+          <MDBTypography tag="h6" className="text-black mb-0">
+            {title}
+          </MDBTypography>
+        </MDBCol>
+        <MDBCol md="3" lg="3" xl="3" className="d-flex align-items-center">
+          <MDBBtn color="link" className="px-2" rippleDuration={0}>
+            <MDBIcon fas icon="minus" onClick={removeProduct}/>
+          </MDBBtn>
 
-            <div className="p-2 h5">
-              <p>Each</p>
-            </div>
-            <div className="p-2 h4">
-              <p>
-                <span className="label label-success mr-2">$</span>
-                {price}
-              </p>
-            </div>
+          <MDBTypography tag="h6" className="text-black mb-0">
+            {qty}
+          </MDBTypography>
 
-            <button
-              type="button"
-              onClick={addProduct}
-              className="btn btn-outline-secondary"
-            >
-              INCREMENT (+)
-            </button>
-
-            <button
-              type="button"
-              onClick={removeProduct}
-              className="btn btn-outline-secondary"
-            >
-              DECREMENT (-)
-            </button>
-
-            <p>"Quantity :"{qty}</p>
-          </div>
-        </div>
-      </div>
-      
+          <MDBBtn
+            color="link"
+            className="px-2"
+            rippleDuration={0}
+          >
+            <MDBIcon fas icon="plus" onClick={addProduct} />
+          </MDBBtn>
+        </MDBCol>
+        <MDBCol md="3" lg="2" xl="2" className="text-end">
+          <MDBTypography tag="h6" className="mb-0">
+            {price}
+          </MDBTypography>
+        </MDBCol>
+        <MDBCol md="1" lg="1" xl="1" className="text-end">
+          <a href="#!" className="text-muted">
+            <MDBIcon fas icon="times" />
+          </a>
+        </MDBCol>
+      </MDBRow>
     </>
-  );*/
-  <div class="body1">
-  <div class="CartContainer1">
-  <div class="Header1">
-    <h3 class="Heading1">Shopping Cart</h3>
-    <h5 class="Action1">Remove all</h5>
-  </div>
-
-  <div class="Cart-Items1">
-      <div class="image-box1">
-        <img src="images/apple.png" style={{  }} />
-      </div>
-      <div class="about1">
-        <h1 class="title1">Apple Juice</h1>
-        <h3 class="subtitle1">250ml</h3>
-        <img src="images/veg.png" style={{  }}/>
-      </div>
-      <div class="counter1">
-        <div class="btn1">+</div>
-        <div class="count1">2</div>
-        <div class="btn1">-</div>
-      </div>
-      <div class="prices1">
-        <div class="amount1">$2.99</div>
-        <div class="save1"><u>Save for later</u></div>
-        <div class="remove1"><u>Remove</u></div>
-      </div>
-  </div>
-  
-<div class="checkout1">
-<div class="total1">
-  <div>
-    <div class="Subtotal1">Sub-Total</div>
-    <div class="items1">2 items</div>
-  </div>
-  <div class="total-amount1">$6.18</div>
-</div>
-<button class="button">Checkout</button></div>
-</div>
-</div>
   );
-}
+};
 
 export default Cart;

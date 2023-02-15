@@ -1,189 +1,39 @@
-.body1{
-	margin: 0;
-	padding: 0;
-	background: linear-gradient(to bottom right, #E3F0FF, #FAFCFF);
-	height: 100vh;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+@media (min-width: 1025px) {
+  .h-custom {
+    height: 100vh !important;
+  }
 }
 
-.CartContainer1{
-	width: 70%;
-	height: 90%;
-	background-color: #ffffff;
-    border-radius: 20px;
-    box-shadow: 0px 10px 20px #1687d933;
+.card-registration .select-input.form-control[readonly]:not([disabled]) {
+  font-size: 1rem;
+
+  line-height: 2.15;
+
+  padding-left: 0.75em;
+
+  padding-right: 0.75em;
 }
 
-.Header1{
-	margin: auto;
-	width: 90%;
-	height: 15%;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
+.card-registration .select-arrow {
+  top: 13px;
 }
 
-
-
-.Action1{
-	font-size: 14px;
-	font-family: 'Open Sans';
-	font-weight: 600;
-	color: #E44C4C;
-	cursor: pointer;
-	border-bottom: 1px solid #E44C4C;
+.bg-grey {
+  background-color: #eae8e8;
 }
 
-.Cart-Items1{
-	margin: auto;
-	width: 90%;
-	height: 30%;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-}
-.image-box1{
-	width: 15%;
-	text-align: center;
-}
-.about1{
-	height: 100%;
-	width: 24%;
-}
-.title1{
-	padding-top: 10px;
-	line-height: 10px;
-	font-size: 32px;
-	font-family: 'Open Sans';
-	font-weight: 800;
-	color: #202020;
-}
-.subtitle1{
-	line-height: 10px;
-	font-size: 18px;
-	font-family: 'Open Sans';
-	font-weight: 600;
-	color: #909090;
+@media (min-width: 992px) {
+  .card-registration-2 .bg-grey {
+    border-top-right-radius: 16px;
+
+    border-bottom-right-radius: 16px;
+  }
 }
 
-.counter1{
-	width: 15%;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-}
-.btn1{
-	width: 40px;
-	height: 40px;
-	border-radius: 50%;
-	background-color: #d9d9d9;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	font-size: 20px;
-	font-family: 'Open Sans';
-	font-weight: 900;
-	color: #202020;
-	cursor: pointer;
-}
-.count1{
-	font-size: 20px;
-	font-family: 'Open Sans';
-	font-weight: 600;
-	color: #202020;
-}
+@media (max-width: 991px) {
+  .card-registration-2 .bg-grey {
+    border-bottom-left-radius: 16px;
 
-.prices1{
-	height: 100%;
-	text-align: right;
-}
-.amount1{
-	padding-top: 20px;
-	font-size: 26px;
-	font-family: 'Open Sans';
-	font-weight: 800;
-	color: #202020;
-}
-.save1{
-	padding-top: 5px;
-	font-size: 14px;
-	font-family: 'Open Sans';
-	font-weight: 600;
-	color: #1687d9;
-	cursor: pointer;
-}
-.remove1{
-	padding-top: 5px;
-	font-size: 14px;
-	font-family: 'Open Sans';
-	font-weight: 600;
-	color: #E44C4C;
-	cursor: pointer;
-}
-
-.pad1{
-	margin-top: 5px;
-}
-
-hr1{
-	width: 66%;
-	float: right;
-	margin-right: 5%;
-}
-.checkout1{
-	float: right;
-	margin-right: 5%;
-	width: 28%;
-}
-.total1{
-	width: 100%;
-	display: flex;
-	justify-content: space-between;
-}
-.Subtotal1{
-	font-size: 22px;
-	font-family: 'Open Sans';
-	font-weight: 700;
-	color: #202020;
-}
-.items1{
-	font-size: 16px;
-	font-family: 'Open Sans';
-	font-weight: 500;
-	color: #909090;
-	line-height: 10px;
-}
-.total-amount1{
-	font-size: 36px;
-	font-family: 'Open Sans';
-	font-weight: 900;
-	color: #202020;
-}
-.button1{
-	margin-top: 10px;
-	width: 100%;
-	height: 40px;
-	border: none;
-	background: linear-gradient(to bottom right, #B8D7FF, #8EB7EB);
-	border-radius: 20px;
-	cursor: pointer;
-	font-size: 16px;
-	font-family: 'Open Sans';
-	font-weight: 600;
-	color: #202020;
-}
-.cartProduct div div div img {
-    height:100px;
-}
-
-.cartProduct {
-    padding:8px;
-    border: 1px solid rgba(228, 201, 201, 0.39);
-    background-color: rgba(223, 198, 198, 0.543);
-}
-.cart{
-   text-align: center; 
-   
+    border-bottom-right-radius: 16px;
+  }
 }

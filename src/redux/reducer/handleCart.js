@@ -4,7 +4,7 @@ const cart = JSON.parse(localStorage.getItem("cart"));
 
 const handleCart = (state = cart, action) => {
   const product = action.payload;
- 
+
   let cartProducts = JSON.parse(localStorage.getItem("cart"));
   // localStorage.clear();
   switch (action.type) {
@@ -23,7 +23,7 @@ const handleCart = (state = cart, action) => {
       } else {
         const product = action.payload;
 
-        cartProducts = [ ...state,  {  ...product,  qty: 1 },  ];
+        cartProducts = [...state, { ...product, qty: 1 }];
         localStorage.setItem("cart", JSON.stringify(cartProducts));
         return cartProducts;
       }
@@ -42,7 +42,6 @@ const handleCart = (state = cart, action) => {
       return cartProducts;
 
     default:
-   
       localStorage.setItem("cart", JSON.stringify(state));
       return state;
   }
