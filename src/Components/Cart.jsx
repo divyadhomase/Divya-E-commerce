@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { delCart } from "../redux/action/index";
 import { addCart } from "../redux/action/index";
 import { deleteCart } from "../redux/action/index";
+import { useNavigate } from "react-router-dom";
 
 import "./Cart.css";
 
@@ -27,10 +28,13 @@ function Cart() {
   });
 
   const [cartProducts, setCart] = useState(cart);
+  const [totalSum, setTotalSum] = useState(0);
+  const [totalQuantity, setTotalQuantity] = useState(0);
+  const [coupen, setCoupen] = useState("");
+  const [totalPrice, setTotalPrice] = useState(0);
 
   useEffect(() => {
     const cartElements = JSON.parse(localStorage.getItem("cart"));
-
     cartElements &&
       cartElements.length &&
       setCart(() => {
@@ -44,6 +48,33 @@ function Cart() {
     });
   }, [cart]);
 
+  useEffect(() => {
+    var prd = cartProducts && cartProducts.length > 0;
+    if (prd) {
+      var sum = 0;
+      var quanty = 0;
+      for (let i = 0; i < cartProducts.length; i++) {
+        {
+          quanty = quanty + cartProducts[i].qty;
+          sum = sum + cartProducts[i].qty * cartProducts[i].price;
+        }
+      }
+      sum = sum.toFixed(2);
+
+      if (coupen.localeCompare("EM500") === 0) {
+        var l = (totalSum * 5) / 100;
+        var m = totalSum - l;
+        m = m.toFixed(2);
+        setTotalPrice(m);
+      }
+      else{
+        setTotalPrice(sum);
+      }
+      setTotalSum(sum);
+      setTotalQuantity(quanty);
+    }
+  }, [cartProducts,coupen]);
+
   const dispatch = useDispatch();
   const removeProduct = (cartItem) => {
     dispatch(delCart(cartItem));
@@ -55,6 +86,11 @@ function Cart() {
 
   const deleteProduct = (cartItem) => {
     dispatch(deleteCart(cartItem));
+  };
+
+  const usenavigate = useNavigate();
+  const backToProducts = () => {
+    usenavigate("/products");
   };
 
   return (
@@ -74,11 +110,11 @@ function Cart() {
                         <div className="d-flex justify-content-between align-items-center mb-5">
                           <MDBTypography
                             tag="h1"
-                            className="fw-bold mb-0 text-black"
+                            className="fw-bold mb-0 text-success"
                           >
                             Shopping Cart
                           </MDBTypography>
-                          <MDBTypography className="mb-0 text-muted">
+                          <MDBTypography className="mb-0 text-success">
                             {(cartProducts && cartProducts.length) || 0}
                           </MDBTypography>
                         </div>
@@ -102,8 +138,13 @@ function Cart() {
                               tag="a"
                               href="#!"
                               className="text-body"
+                              onClick={backToProducts}
                             >
-                              <MDBIcon fas icon="long-arrow-alt-left me-2" />{" "}
+                              <MDBIcon
+                                fas
+                                icon="long-arrow-alt-left me-2"
+                                onClick={backToProducts}
+                              />{" "}
                               Back to shop
                             </MDBCardText>
                           </MDBTypography>
@@ -116,40 +157,38 @@ function Cart() {
                           tag="h3"
                           className="fw-bold mb-5 mt-2 pt-1"
                         >
-                          Summary
+                          CHECKOUT
                         </MDBTypography>
 
                         <hr className="my-4" />
 
                         <div className="d-flex justify-content-between mb-4">
                           <MDBTypography tag="h5" className="text-uppercase">
-                            items 3
+                            ITEMS :{" "}
+                            {cartProducts && cartProducts.length > 0
+                              ? totalQuantity
+                              : 0}
                           </MDBTypography>
-                          <MDBTypography tag="h5">€ 132.00</MDBTypography>
+                          <MDBTypography tag="h5">
+                            $
+                            {cartProducts && cartProducts.length > 0
+                              ? totalSum
+                              : 0}
+                          </MDBTypography>
                         </div>
 
                         <MDBTypography tag="h5" className="text-uppercase mb-3">
-                          Shipping
-                        </MDBTypography>
-
-                        <div className="mb-4 pb-2">
-                          <select
-                            className="select p-2 rounded bg-grey"
-                            style={{ width: "100%" }}
-                          >
-                            <option value="1">Standard-Delivery- €5.00</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
-                            <option value="4">Four</option>
-                          </select>
-                        </div>
-
-                        <MDBTypography tag="h5" className="text-uppercase mb-3">
-                          Give code
+                          Enter code
                         </MDBTypography>
 
                         <div className="mb-5">
-                          <MDBInput size="lg" label="Enter your code" />
+                          <MDBInput
+                            size="lg"
+                            label="Get 5% Off"
+                            placeholder="EM500"
+                            value={coupen}
+                            onChange={(e) => setCoupen(e.target.value)}
+                          />
                         </div>
 
                         <hr className="my-4" />
@@ -158,7 +197,7 @@ function Cart() {
                           <MDBTypography tag="h5" className="text-uppercase">
                             Total price
                           </MDBTypography>
-                          <MDBTypography tag="h5">€ 137.00</MDBTypography>
+                          <MDBTypography tag="h5">${totalPrice}</MDBTypography>
                         </div>
 
                         <MDBBtn color="dark" block size="lg">
@@ -179,7 +218,6 @@ function Cart() {
 
 const CartItems = (props) => {
   // write function to remove item
-  const dispatch = useDispatch();
   const removeProduct = () => {
     props.removeProduct(props.item);
   };
@@ -227,7 +265,7 @@ const CartItems = (props) => {
         </MDBCol>
         <MDBCol md="3" lg="2" xl="2" className="text-end">
           <MDBTypography tag="h6" className="mb-0">
-            {price}
+            ${qty * price}
           </MDBTypography>
         </MDBCol>
         <MDBCol md="1" lg="1" xl="1" className="text-end">
