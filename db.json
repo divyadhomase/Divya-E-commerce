@@ -1,43 +1,31 @@
 {
   "user": [
     {
-      "id": "adminuser",
-      "name": "Nihira",
-      "password": "admin",
-      "email": "nihiratechiees@gmail.com",
-      "phone": "8989898989",
-      "country": "usa",
-      "address": "",
-      "gender": "female"
-    },
-    {
       "id": "admin",
       "name": "admin",
       "password": "admin",
-      "email": "admin@gmail.com",
-      "phone": "",
+      "email": "sukh@gmail.com",
+      "phone": "09463112345",
       "country": "india",
-      "address": "",
-      "gender": "male"
-    },
-    {
-      "id": "admin1",
-      "name": "admin1",
-      "password": "admin1",
-      "email": "admin1@gmail.com",
-      "phone": "",
-      "country": "india",
-      "address": "",
+      "address": "Hoshiarpur , Punjab",
       "gender": "male"
     },
     {
       "id": "meet",
-      "name": "meet",
-      "password": "meet",
-      "email": "meet@gmail.com",
-      "phone": "meet",
+      "password": "admin",
+      "email": "sukh@gmail.com",
+      "phone": "09463112345",
       "country": "india",
-      "address": "",
+      "address": "admin",
+      "gender": "female"
+    },
+    {
+      "id": "divya",
+      "password": "divya",
+      "email": "divya@gmail.com",
+      "phone": "11111111111",
+      "country": "india",
+      "address": "as",
       "gender": "female"
     }
   ]
