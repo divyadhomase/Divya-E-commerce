@@ -2,14 +2,27 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addCart } from "../redux/action";
+import { useNavigate } from "react-router-dom";
 
 import "./Prod.css";
 import { NavLink } from "react-router-dom";
 
 function Prod(props) {
   // const data= (props);
+  const [userLogin, setUserLogin] = useState([]);
+  const usenavigate = useNavigate();
+  let username;
+  useEffect(() => {
+    username = sessionStorage.getItem("username");
+    if (username === "" || username === null) {
+      setUserLogin(true);
+    } else {
+      setUserLogin(false);
+    }
+  }, []);
+
   const [data1, setReqData] = useState([]);
-  const [allData,setAllData]=useState([]);
+  const [allData, setAllData] = useState([]);
 
   const dispatch = useDispatch();
   const addProduct = (data1) => {
@@ -18,8 +31,7 @@ function Prod(props) {
   };
 
   var params = useParams();
-  var {id} = params;
-
+  var { id } = params;
 
   const fetchProductData = () => {
     fetch(`https://run.mocky.io/v3/0e1671e4-064f-47e0-9efe-c2338fb4e4d0`)
@@ -27,24 +39,22 @@ function Prod(props) {
         return response.json();
       })
       .then((data) => {
-        setAllData(()=>data);
+        setAllData(() => data);
       });
   };
   useEffect(() => {
     fetchProductData();
   }, []);
 
-  useEffect(()=>{
+  useEffect(() => {
     let currentProduct = null;
-    if(allData.length) {
-      currentProduct = allData.filter((item, index)=>{
-        return item.id === parseInt(id)
-      })
-      setReqData(()=>currentProduct[0]);
+    if (allData.length) {
+      currentProduct = allData.filter((item, index) => {
+        return item.id === parseInt(id);
+      });
+      setReqData(() => currentProduct[0]);
     }
-  },[allData])
-
-  
+  }, [allData]);
 
   return (
     <div>
@@ -61,20 +71,29 @@ function Prod(props) {
             <p className="lead">
               Rating<i className="fa fa-star"></i>
             </p>
-            
             <h3 className="fw-bold p-2 text-black">${data1.price}</h3>
-
             <p className="lead">
               <b>Product Specifications: </b>
               {data1.description}
             </p>
-            {/* {console.log(reqData.rating)} */}
-            <button
+            
+            {userLogin && (
+              <NavLink
+                to="/login"
+                className="btn btn-outline-dark mx-2 px-3 py-2"
+              >
+                Add to Cart
+              </NavLink>
+            )}
+            {!userLogin && (
+              <button
               className="btn btn-outline-dark mx-2 px-3 py-2"
               onClick={() => addProduct(data1)}
-            >
-              Add to Cart
-            </button>
+              >
+                Add to Cart
+              </button>
+            )}
+
             <NavLink to="/cart" className="btn btn-dark mx-2 px-3 py-2">
               Go to Cart
             </NavLink>

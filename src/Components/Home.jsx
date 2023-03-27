@@ -6,12 +6,12 @@ import {useNavigate } from "react-router-dom";
 // import image from './main_img.jpg';
 const Home = () => {
   const usenavigate = useNavigate();
-  useEffect(()=>{
+  /*useEffect(()=>{
       let username=sessionStorage.getItem('username');
       if (username === '' || username === null) {
           usenavigate('/login');
       }
-  },[]);
+  },[]);*/
   return (
     <div>
       <div className="hero">

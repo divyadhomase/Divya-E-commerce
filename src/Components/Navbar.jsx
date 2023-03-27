@@ -79,7 +79,6 @@ export default function Navbar({ show, setShow }) {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav mx-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                {!show && (
                   <NavLink
                     className="nav-link "
                     to="/"
@@ -99,11 +98,9 @@ export default function Navbar({ show, setShow }) {
                     </span>
                     Home
                   </NavLink>
-                )}
               </li>
 
               <li className="nav-item">
-                {!show && (
                   <NavLink
                     className="nav-link"
                     to="/about"
@@ -119,7 +116,6 @@ export default function Navbar({ show, setShow }) {
                   >
                     About Us
                   </NavLink>
-                )}
               </li>
 
               {/* <li className="nav-item dropdown">
@@ -133,7 +129,6 @@ export default function Navbar({ show, setShow }) {
           </li> */}
 
               <li className="nav-item">
-                {!show && (
                   <NavLink
                     className="nav-link"
                     to="/products"
@@ -149,7 +144,6 @@ export default function Navbar({ show, setShow }) {
                   >
                     Products
                   </NavLink>
-                )}
               </li>
 
               {/* <ul class="dropdown-menu">

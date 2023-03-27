@@ -23,6 +23,12 @@ import {
 } from "mdb-react-ui-kit";
 
 function Cart() {
+  useEffect(()=>{
+      let username=sessionStorage.getItem('username');
+      if (username === '' || username === null) {
+          usenavigate('/login');
+      }
+  },[]);
   const cart = useSelector((state) => {
     return state.rootReducers.handleCart;
   });
@@ -66,14 +72,13 @@ function Cart() {
         var m = totalSum - l;
         m = m.toFixed(2);
         setTotalPrice(m);
-      }
-      else{
+      } else {
         setTotalPrice(sum);
       }
       setTotalSum(sum);
       setTotalQuantity(quanty);
     }
-  }, [cartProducts,coupen]);
+  }, [cartProducts, coupen]);
 
   const dispatch = useDispatch();
   const removeProduct = (cartItem) => {
@@ -197,7 +202,12 @@ function Cart() {
                           <MDBTypography tag="h5" className="text-uppercase">
                             Total price
                           </MDBTypography>
-                          <MDBTypography tag="h5">${totalPrice}</MDBTypography>
+                          <MDBTypography tag="h5">
+                            $
+                            {cartProducts && cartProducts.length > 0
+                              ? totalPrice
+                              : 0}
+                          </MDBTypography>
                         </div>
 
                         <MDBBtn color="dark" block size="lg">

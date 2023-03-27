@@ -3,17 +3,21 @@ import { NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addCart } from "../redux/action";
 import "./products.css";
-import {useNavigate } from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
 
 function Products() {
+  const [userLogin, setUserLogin] = useState([]);
   const usenavigate = useNavigate();
-  useEffect(()=>{
-      let username=sessionStorage.getItem('username');
-      if (username === '' || username === null) {
-          usenavigate('/login');
-      }
-  },[]);
+  let username;
+  useEffect(() => {
+    username = sessionStorage.getItem("username");
+    if (username === "" || username === null) {
+      setUserLogin(true);
+    } else {
+      setUserLogin(false);
+    }
+  }, []);
+
   const [data, setData] = useState([]);
   const [filter, setFilter] = useState([]);
 
@@ -22,10 +26,6 @@ function Products() {
     setFilter(updatedList);
     return;
   };
-
-  // const PrdDetails = (data2) => {
-  //   console.log(data2);
-  // }
 
   const fetchData = () => {
     fetch("https://run.mocky.io/v3/4c63603a-db22-4e32-9bf9-797d356085c1")
@@ -46,11 +46,10 @@ function Products() {
     fetchData();
   }, []);
 
-
-  const addToCart=(item)=>{
+  const addToCart = (item) => {
     dispatch(addCart(item));
     console.log(item);
-  }
+  };
 
   return (
     <div>
@@ -97,7 +96,7 @@ function Products() {
                     />
                   </div>
 
-                  <div style={{minHeight:'70px'}}>
+                  <div style={{ minHeight: "70px" }}>
                     <h6 className="card-title text-center" href="/#">
                       {data.title}
                     </h6>
@@ -105,22 +104,33 @@ function Products() {
                     {/*correctedError*/}
                   </div>
                   <div className="row">
-                  <NavLink className="col-7" to={`./${data.id}`}>
-                    <button
-                      className="btn btn-sm btn-outline-dark"
-                      // onClick={() => PrdDetails(data)}
-                    >
-                      View Details
-                    </button>
-                  </NavLink>
-                  <button
-                      className="col-5 btn btn-sm btn-outline-dark"
-                      onClick={() => addToCart(data)}
-                    >
-                      Add to Cart
-                    </button>
+                    <NavLink className="col-7" to={`./${data.id}`}>
+                      <button
+                        className="btn btn-sm btn-outline-dark"
+                        // onClick={() => PrdDetails(data)}
+                      >
+                        View Details
+                      </button>
+                    </NavLink>
+
+                    {userLogin && (
+                      <NavLink
+                        to="/login"
+                        className="col-5 btn btn-sm btn-outline-dark"
+                      >
+                        Add to Cart
+                      </NavLink>
+                    )}
+
+                    {!userLogin && (
+                      <button
+                        className="col-5 btn btn-sm btn-outline-dark"
+                        onClick={() => addToCart(data)}
+                      >
+                        Add to Cart
+                      </button>
+                    )}
                   </div>
-                  
                 </div>
               </div>
             </div>
